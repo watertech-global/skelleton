@@ -7,3 +7,5 @@ const Country = new mongoose.Schema(
         countryCode: {type:String, default: 'CD'}
     }
 );
+
+module.exports = mongoose.model('Country', Country);

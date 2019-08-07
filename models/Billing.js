@@ -1,4 +1,4 @@
-//
+//Watertech models
 //Billing model
 const mongoose = require('mongoose');
 
@@ -14,3 +14,4 @@ const Billing = new mongoose.Schema({
 
     
 });
+module.exports = mongoose.model('Billing', Billing);
