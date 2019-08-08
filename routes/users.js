@@ -1,14 +1,43 @@
 //Watertech Routes
 //Users Routes
-var express = require('express');
-var router = express.Router();
+//Defining app CRUD
+const express = require('express');
+const router = express.Router();
 
-const mongoos = require('mongoose');
-mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true});
+//Invoke a User model instance
+const User = require('../models/User');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+//GET
+
+//Get all users
+router.get('/', (req, res)=>{
+    try {
+      const users = User.find({});
+      res.send({ users });
+    } catch (error) {
+      res.send({Message : error});
+    }
 });
 
-module.exports = router;
+//Get a user
+router.get('/:id', (req, res)=>{
+  try {
+    //getting the param here
+    const user = User.findById(req.params.id);
+    res.send({ user });
+  } catch (error) {
+    res.send({Message : 'Desolé! Utilisateur non trouvé!'});
+  }
+});
+
+//POST
+router.post('/', (req, res)=>{
+  //Create a new user
+ const newUser = await User.create({
+    username : req.body.username,
+    password : req.body.password,
+    roleCode : req.body.roleCode,
+    location.idCountry : 
+  }),
+
+});
