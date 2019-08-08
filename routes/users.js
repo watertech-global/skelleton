@@ -10,9 +10,9 @@ const User = require('../models/User');
 //GET
 
 //Get all users
-router.get('/', (req, res)=>{
+router.get('/', async (req, res)=>{
     try {
-      const users = User.find({});
+      const users = await User.find({});
       res.send({ users });
     } catch (error) {
       res.send({Message : error});
@@ -20,10 +20,10 @@ router.get('/', (req, res)=>{
 });
 
 //Get a user
-router.get('/:id', (req, res)=>{
+router.get('/:id', async (req, res)=>{
   try {
     //getting the param here
-    const user = User.findById(req.params.id);
+    const user = await User.findById(req.params.id);
     res.send({ user });
   } catch (error) {
     res.send({Message : 'Desolé! Utilisateur non trouvé!'});
@@ -31,7 +31,7 @@ router.get('/:id', (req, res)=>{
 });
 
 //POST
-router.post('/', (req, res)=>{
+router.post('/', async (req, res)=>{
   //Create a new user
  const newUser = await User.create({
     username : req.body.username,
